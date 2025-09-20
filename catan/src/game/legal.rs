@@ -39,9 +39,9 @@ pub fn allowed_initial_road_placement(coord: Coord, player: PlayerId, state: &St
     }
 }
 
-/// Does this victim have a settlement or city aroung the hex
+/// Does this victim have a settlement or city around the hex
 ///
-/// Usefull to check if the player can steal from the victim
+/// Useful to check if the player can steal from the victim
 pub fn can_steal_victim(player: PlayerId, target_hex: Coord, victim: PlayerId, state: &State) -> Result<(), Error> {
     let mut potential_victims = vec![false; state.player_count() as usize];
     for intersection in state.hex_intersection_neighbours(target_hex)?.iter() {

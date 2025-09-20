@@ -41,7 +41,7 @@ pub(super) fn apply<R : Rng>(phase: &mut Phase, state: &mut State, action: Actio
                 for p in 0..state.player_count() {
                     let player = PlayerId::from(p);
                     let player_resources = state.get_player_hand(player).resources;
-                    if player_resources.total() >= 7 {
+                    if player_resources.total() >= 8 {
                         discards.push((player, None))
                     }
                 }

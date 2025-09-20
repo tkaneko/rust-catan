@@ -1,4 +1,4 @@
-use rand::{Rng, thread_rng};
+use rand::{Rng, rng};
 use rand::seq::SliceRandom;
 use rand::rngs::ThreadRng;
 
@@ -54,7 +54,7 @@ const DVP_CARDS: DevelopmentCards =
 
 #[allow(dead_code)]
 pub fn random_default_setup_simple<T : StateMaker>(player_count: u8) -> State {
-    random_default_setup::<T, ThreadRng>(&mut thread_rng(), player_count)
+    random_default_setup::<T, ThreadRng>(&mut rng(), player_count)
 }
 
 pub fn random_default_setup<T : StateMaker, R : Rng>(rng: &mut R, player_count: u8) -> State {
@@ -82,7 +82,7 @@ pub fn random_default_setup<T : StateMaker, R : Rng>(rng: &mut R, player_count: 
     porttiles.shuffle(rng);
     let transform = CoordTransform::new(
         Coord::ZERO,
-        if rng.gen() {0} else {3},
+        if rng.random() {0} else {3},
         false
     );
     let coord_porttile_pairs = PORT_PATHS.iter()
@@ -123,7 +123,7 @@ pub fn random_default_setup_existing_state<S : StateTrait, R : Rng>(rng: &mut R,
     porttiles.shuffle(rng);
     let transform = CoordTransform::new(
         Coord::ZERO,
-        if rng.gen() {0} else {3},
+        if rng.random() {0} else {3},
         false
     );
     let coord_porttile_pairs = PORT_PATHS.iter()

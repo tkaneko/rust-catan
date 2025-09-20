@@ -52,7 +52,7 @@ impl Layout {
     }
 
     pub fn coord_index(&self, flat: usize) -> Result<Coord, Error> {
-        if flat >= self.size {	// error if equals
+        if flat >= self.size { //等号も範囲外アクセス
             Err(Error::OutOfBoard)
         } else {
             let x = (flat % self.width as usize) as i8 - self.half_width as i8;

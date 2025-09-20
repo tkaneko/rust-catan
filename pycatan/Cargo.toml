@@ -12,15 +12,15 @@ crate-type = ["cdylib"]
 path = "../catan"
 
 [dependencies.pyo3]
-version = "0.8"
+version = "0.25"
 features = ["extension-module"]
 
 [dependencies.numpy]
-version = "0.7"
+version = "0.25"
 
 [dependencies.ndarray]
-version = "0.13"
+version = "0.16"
 
 [dependencies.rand]
-version = "0.7"
+version = "0.9"
 features = ["small_rng"]

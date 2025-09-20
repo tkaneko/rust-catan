@@ -61,7 +61,7 @@ impl CoordTransform {
     const FLIP_BIT: u32 = 1 << 31;
 
     pub fn random<R: Rng>(center: Coord, rng: &mut R) -> CoordTransform {
-        let v: u32 = rng.gen();
+        let v: u32 = rng.random();
         let flip: bool = v & CoordTransform::FLIP_BIT != 0;
         CoordTransform{
             center,
@@ -69,7 +69,7 @@ impl CoordTransform {
             rot: CoordRotation::from(v),
         }
     }
-
+    // Brick Coordinate
     fn transform_posive_rotation(x: i8, y:i8) -> (i8, i8) {
         let mut r = (x + y) & 3;
         if r >= 2 {

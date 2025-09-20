@@ -34,7 +34,7 @@ pub(super) fn apply<R : Rng>(phase: &mut Phase, state: &mut State, action: Actio
         // ## Rolling Dice
         //
         Action::RollDice => {
-            let roll = rng.gen_range(1, 7) + rng.gen_range(1, 7);
+            let roll = rng.random_range(1..=6) + rng.random_range(1..=6);
             // ### Rolling 7
             if roll == 7 {
                 let mut discards = Vec::<(PlayerId, Option<Resources>)>::new();
@@ -123,7 +123,7 @@ pub(super) fn apply<R : Rng>(phase: &mut Phase, state: &mut State, action: Actio
                     let mut total_discards = discarded.total();
                     while total_discards > should_discard {
                         // Randomly keep cards
-                        let mut picked = rng.gen_range(0, total_discards);
+                        let mut picked = rng.random_range(0..total_discards);
                         for res in Resource::ALL.iter() {
                             if picked < discarded[*res] {
                                 discarded[*res] -= 1;
@@ -168,7 +168,7 @@ pub(super) fn apply<R : Rng>(phase: &mut Phase, state: &mut State, action: Actio
             if victim != player && victim != PlayerId::NONE {
                 if state.get_player_hand(victim).resources.total() > 0 {
                     let resources = state.get_player_hand(victim).resources;
-                    let mut picked = rng.gen_range(0, resources.total());
+                    let mut picked = rng.random_range(0..resources.total());
                     for res in Resource::ALL.iter() {
                         if picked < resources[*res] {
                             state.get_player_hand_mut(victim).resources[*res] -= 1;
@@ -290,7 +290,7 @@ pub(super) fn apply<R : Rng>(phase: &mut Phase, state: &mut State, action: Actio
             state.get_player_hand_mut(player).resources -= Resources::DVP_CARD;
             *state.get_bank_resources_mut() += Resources::DVP_CARD;
             let development = state.get_development_cards_mut();
-            let mut picked = rng.gen_range(0, development.total());
+            let mut picked = rng.random_range(0..development.total());
             for dvp in DevelopmentCard::ALL.iter() {
                 if picked < development[*dvp] {
                     // this development card was picked

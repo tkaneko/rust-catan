@@ -24,9 +24,13 @@ impl PyObservationFormat {
 impl PyObservationFormat {
 
     #[new]
-    #[staticmethod]
-    #[args(half_width = 10, half_height = 5, use_python_state = false, include_hidden = false)]
-    pub fn new(half_width: usize, half_height: usize, use_python_state: bool, include_hidden: bool) -> Self {
+    #[pyo3(signature = (half_width=10, half_height=5, use_python_state=false, include_hidden=false))]
+    pub fn new(
+        half_width: usize,
+        half_height: usize,
+        use_python_state: bool,
+        include_hidden: bool
+    ) -> Self {
         PyObservationFormat {
             half_width,
             half_height,

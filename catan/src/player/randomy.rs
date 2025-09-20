@@ -16,7 +16,7 @@ impl PickerPlayerTrait for Randomy {
     fn new_game(&mut self, _: PlayerId, _: &State, _: &Vec<Action>) {}
 
     fn pick_action(&mut self, _: &Phase, _: &State, legal_actions: &Vec<Action>) -> Action {
-        legal_actions[self.rng.gen_range(0, legal_actions.len())]
+        legal_actions[self.rng.random_range(0..legal_actions.len())]
     }
 
     fn bad_action(&mut self, error: Error) {
@@ -31,7 +31,7 @@ impl PickerPlayerTrait for Randomy {
 impl Randomy {
     fn new() -> Randomy {
         Randomy {
-            rng: SmallRng::from_entropy(),
+            rng: SmallRng::from_rng(&mut rand::rng()),
         }
     }
 

@@ -13,7 +13,7 @@ use py_catan_observation::PyCatanObservation;
 pub use py_observation_format::PyObservationFormat;
 
 #[pymodule]
-fn pycatan(_py: Python, m: &PyModule) -> PyResult<()> {
+fn pycatan(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<SingleEnvironment>()?;
     m.add_class::<MultiEnvironment>()?;
     m.add_class::<PyObservationFormat>()?;

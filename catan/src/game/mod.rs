@@ -46,7 +46,7 @@ impl Game {
 
     pub fn setup_and_play(&mut self) -> Notification {
         let player_count = self.players.len();
-        let mut rng = SmallRng::from_entropy();
+        let mut rng = SmallRng::from_rng(&mut rand::rng());
         let mut state = setup::random_default::<TricellState, SmallRng>(&mut rng, player_count as u8);
         let mut players_order: Vec<usize> = (0..player_count).collect();
         players_order.shuffle(&mut rng);
